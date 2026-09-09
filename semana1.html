@@ -179,7 +179,6 @@
 </head>
 
 <body>
-  <!-- Rol del usuario -->
   <div class="user-name" id="userName">Cargando...</div>
 
   <div class="semana-container">
@@ -189,14 +188,13 @@
       <h1>🌸 Semana 1 - Planificación</h1>
       <p>Archivos y tareas alojados directamente en el repositorio de GitHub</p>
 
-      <a href="https://github.com/maxi03050/base_de_datos_2/tree/main/tareas%20semanales/tarea_sem1"
+      <a href="https://github.com/jenniferivera001-cyber/base-de-datos-2/tree/main/tareas%20semanales/tarea_sem1"
          target="_blank"
          class="github-link">
         🌐 Ver carpeta en GitHub
       </a>
     </div>
 
-    <!-- Lista de archivos procesados desde la API de GitHub -->
     <div class="work-list">
       <h2>📂 Archivos de la Semana</h2>
       <p id="loadingStatus">⏳ Cargando archivos desde GitHub...</p>
@@ -210,9 +208,9 @@
       const esAdmin = localStorage.getItem("esAdmin") === "true" || localStorage.getItem("isAdmin") === "true";
       document.getElementById("userName").textContent = esAdmin ? "Administrador" : "Invitado";
 
-      // Configuración del repositorio GitHub
-      const repoOwner = "maxi03050";
-      const repoName = "base_de_datos_2";
+      // Configuración del nuevo repositorio GitHub
+      const repoOwner = "jenniferivera001-cyber";
+      const repoName = "base-de-datos-2";
       const folderPath = "tareas semanales/tarea_sem1";
 
       const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${encodeURIComponent(folderPath)}`;
@@ -230,7 +228,7 @@
           const container = document.getElementById("fileCards");
           loadingStatus.style.display = "none";
 
-          // Filtrar solo archivos (excluir subcarpetas si las hay)
+          // Filtrar solo archivos
           const archivos = data.filter(item => item.type === "file");
 
           if (archivos.length === 0) {
