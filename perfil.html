@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perfil - Jennifer Rivera</title>
+  <link rel="stylesheet" href="body.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', "Segoe UI", sans-serif;
+      /* Mismo fondo degradado rosa/violeta */
+      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 40%, #8a2387 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .perfil-container {
+      max-width: 750px;
+      width: 100%;
+      margin: 40px auto;
+      /* Cristal translúcido rosado */
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 45px 35px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(138, 35, 135, 0.3);
+      backdrop-filter: blur(12px);
+    }
+
+    .perfil-container img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 20px rgba(255, 117, 140, 0.4);
+      object-fit: cover;
+    }
+
+    .perfil-container h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-shadow: 0 3px 10px rgba(138, 35, 135, 0.3);
+    }
+
+    .perfil-container h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      opacity: 0.95;
+      margin-bottom: 25px;
+      color: #ffe6ee;
+    }
+
+    .perfil-container p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #ff85a2, #e056fd);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(224, 86, 253, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(224, 86, 253, 0.6);
+      background: linear-gradient(135deg, #ff758c, #d236ee);
+    }
+  </style>
+</head>
+<body>
+  <div class="perfil-container">
+    <!-- 🔧 Foto de perfil -->
+    <img src="ftperfil.jpeg" alt="Foto de Jennifer Rivera Pecho">
+
+    <h1>Jennifer Rivera Pecho</h1>
+    <h2>Estudiante de Ingeniería - UPLA</h2>
+
+    <p>
+      Bienvenida a mi perfil. Soy estudiante de la Universidad Peruana Los Andes y en este portafolio presento mis trabajos de la asignatura <strong>Base de Datos II</strong>. 
+      Mi objetivo es fortalecer mis habilidades en análisis, diseño y desarrollo de proyectos académicos y profesionales.
+    </p>
+
+    <a href="index.html" class="back-button">← Volver al Inicio</a>
+  </div>
+</body>
+</html>

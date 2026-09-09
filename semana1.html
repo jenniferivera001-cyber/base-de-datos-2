@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semana 1 - Jennifer Rivera</title>
+  <link rel="stylesheet" href="body.css" />
+
+  <style>
+    /* ================================
+       🎨 ESTILOS GENERALES & PALETA
+       ================================ */
+    body {
+      font-family: 'Poppins', "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 40%, #8a2387 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Indicador del rol de usuario */
+    .user-name {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Contenedor principal estilo cristal */
+    .semana-container {
+      max-width: 850px;
+      width: 90%;
+      margin: 80px auto 40px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 15px 35px rgba(138, 35, 135, 0.3);
+      animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .semana-header h1 {
+      margin: 10px 0 5px;
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 0 3px 10px rgba(138, 35, 135, 0.3);
+    }
+
+    .semana-header p {
+      color: #ffe6ee;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    /* Botón de retorno */
+    .back-button {
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateX(-3px);
+    }
+
+    /* Botón directo a GitHub */
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: #24292e;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    .github-link:hover {
+      background: #4078c0;
+      transform: translateY(-2px);
+    }
+
+    /* ================================
+       🗂️ LISTA DE ARCHIVOS Y TARJETAS
+       ================================ */
+    .work-list {
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      padding-top: 25px;
+      margin-top: 30px;
+    }
+
+    .work-list h2 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .file-card {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 18px;
+      padding: 16px 20px;
+      margin-bottom: 15px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      gap: 15px;
+    }
+
+    .file-icon {
+      font-size: 2rem;
+    }
+
+    .file-info { 
+      flex: 1; 
+      overflow: hidden;
+    }
+
+    .file-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .file-size {
+      font-size: 0.85rem;
+      color: #ffe6ee;
+      margin-top: 2px;
+    }
+
+    .download-btn {
+      background: linear-gradient(135deg, #ff85a2, #e056fd);
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(224, 86, 253, 0.3);
+      transition: all 0.3s ease;
+    }
+    .download-btn:hover {
+      background: linear-gradient(135deg, #ff758c, #d236ee);
+      transform: translateY(-2px);
+    }
+
+    #loadingStatus {
+      font-style: italic;
+      color: #ffe6ee;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Rol del usuario -->
+  <div class="user-name" id="userName">Cargando...</div>
+
+  <div class="semana-container">
+    <div class="semana-header">
+      <a href="tareas.html" class="back-button">← Volver a Tareas</a>
+
+      <h1>🌸 Semana 1 - Planificación</h1>
+      <p>Archivos y tareas alojados directamente en el repositorio de GitHub</p>
+
+      <a href="https://github.com/maxi03050/base_de_datos_2/tree/main/tareas%20semanales/tarea_sem1"
+         target="_blank"
+         class="github-link">
+        🌐 Ver carpeta en GitHub
+      </a>
+    </div>
+
+    <!-- Lista de archivos procesados desde la API de GitHub -->
+    <div class="work-list">
+      <h2>📂 Archivos de la Semana</h2>
+      <p id="loadingStatus">⏳ Cargando archivos desde GitHub...</p>
+      <div id="fileCards"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Manejo de rol
+      const esAdmin = localStorage.getItem("esAdmin") === "true" || localStorage.getItem("isAdmin") === "true";
+      document.getElementById("userName").textContent = esAdmin ? "Administrador" : "Invitado";
+
+      // Configuración del repositorio GitHub
+      const repoOwner = "maxi03050";
+      const repoName = "base_de_datos_2";
+      const folderPath = "tareas semanales/tarea_sem1";
+
+      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${encodeURIComponent(folderPath)}`;
+
+      // Cargar los archivos desde GitHub
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("No se pudo obtener el contenido o la carpeta está vacía.");
+          }
+          return response.json();
+        })
+        .then(data => {
+          const loadingStatus = document.getElementById("loadingStatus");
+          const container = document.getElementById("fileCards");
+          loadingStatus.style.display = "none";
+
+          // Filtrar solo archivos (excluir subcarpetas si las hay)
+          const archivos = data.filter(item => item.type === "file");
+
+          if (archivos.length === 0) {
+            container.innerHTML = "<p>No hay archivos disponibles en esta carpeta.</p>";
+            return;
+          }
+
+          archivos.forEach(archivo => {
+            const card = document.createElement("div");
+            card.className = "file-card";
+
+            // Determinar ícono según la extensión
+            const ext = archivo.name.split('.').pop().toLowerCase();
+            let icono = "📄";
+            if (["pdf"].includes(ext)) icono = "📕";
+            if (["jpg", "jpeg", "png", "gif"].includes(ext)) icono = "🖼️";
+            if (["doc", "docx"].includes(ext)) icono = "📘";
+            if (["ppt", "pptx"].includes(ext)) icono = "📙";
+            if (["zip", "rar"].includes(ext)) icono = "📦";
+
+            // Formatear tamaño del archivo
+            const sizeKB = (archivo.size / 1024).toFixed(1) + " KB";
+
+            card.innerHTML = `
+              <div class="file-icon">${icono}</div>
+              <div class="file-info">
+                <div class="file-name" title="${archivo.name}">${archivo.name}</div>
+                <div class="file-size">${sizeKB}</div>
+              </div>
+              <a href="${archivo.download_url}" target="_blank" class="download-btn" download>⬇️ Descargar</a>
+            `;
+
+            container.appendChild(card);
+          });
+        })
+        .catch(error => {
+          document.getElementById("loadingStatus").textContent = "⚠️ " + error.message;
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mis Tareas Semanales - Jennifer Rivera</title>
+  <link rel="stylesheet" href="body.css" />
+  <script src="java.js" defer></script>
+  <style>
+    /* 🔹 Barra superior con el rol y botón de salir */
+    .top-bar {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    .logout-btn {
+      background: linear-gradient(135deg, #ff4757, #ff6b81);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
+      box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: linear-gradient(135deg, #ee5253, #ff4757);
+      transform: translateY(-2px);
+    }
+
+    /* 🔹 Logo + nombre a la izquierda */
+    .left-bar {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .nombre {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    /* 🔹 Estilos para los bloques de Unidades */
+    .unidad-block {
+      width: 100%;
+      max-width: 1000px;
+      margin-bottom: 40px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 25px 30px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(138, 35, 135, 0.15);
+    }
+
+    .unidad-title {
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔹 Logo y nombre a la izquierda -->
+  <div class="left-bar">
+    <img src="lupla.png" alt="Logo" class="logo" />
+    <span class="nombre">Jennifer Rivera Pecho</span>
+  </div>
+
+  <!-- 🔹 Barra superior con usuario y logout -->
+  <div class="top-bar">
+    <div class="user-label" id="userLabel">Invitado</div>
+    <button class="logout-btn" id="logoutBtn" style="display:none;">Salir</button>
+  </div>
+
+  <header>
+    <h1>🗂️ Mis Tareas Semanales</h1>
+    <p>Selecciona la semana para ver tus trabajos organizados por Unidades</p>
+  </header>
+
+  <main style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+    <div id="semanasContainer" style="width: 100%; display: flex; flex-direction: column; align-items: center;"></div>
+    <a href="index.html" class="back-button">← Volver al Inicio</a>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const esAdmin = localStorage.getItem("esAdmin") === "true" || localStorage.getItem("isAdmin") === "true";
+      const userLabel = document.getElementById("userLabel");
+      const logoutBtn = document.getElementById("logoutBtn");
+
+      if (esAdmin) {
+        userLabel.textContent = "Administrador";
+        logoutBtn.style.display = "inline-block";
+      } else {
+        userLabel.textContent = "Invitado";
+        logoutBtn.style.display = "none";
+      }
+
+      // 🔹 Cerrar sesión
+      logoutBtn.addEventListener("click", () => {
+        localStorage.setItem("esAdmin", "false");
+        localStorage.setItem("isAdmin", "false");
+        localStorage.removeItem("userName");
+        alert("Sesión cerrada. Ahora eres Invitado.");
+        window.location.href = "index.html";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  /* Fondo degradado en tonos rosa suave, malva y violeta pastel */
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 40%, #8a2387 100%);
+  margin: 0;
+  padding: 40px 20px;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 700px;
+}
+
+header img {
+  width: 120px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 6px 15px rgba(255, 182, 193, 0.4));
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 0 4px 12px rgba(138, 35, 135, 0.3);
+}
+
+header p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  opacity: 0.95;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Presentación principal */
+.presentacion-grid {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.presentacion-card {
+  /* Cristal translúcido con tono rosado */
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 30px;
+  width: 170px;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(138, 35, 135, 0.25);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+
+.presentacion-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(255, 105, 180, 0.4);
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.presentacion-icon {
+  font-size: 4rem;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.presentacion-card:hover .presentacion-icon {
+  transform: scale(1.15) rotate(-3deg);
+}
+
+.presentacion-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Descripción de trabajos */
+.descripcion-trabajos {
+  max-width: 700px;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-align: center;
+  opacity: 0.95;
+  user-select: none;
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 30px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.descripcion-trabajos h2 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+/* Grid de semanas (para tareas.html) */
+.semanas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+}
+
+/* Tarjeta semana */
+.semana-card {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 25px 20px;
+  box-shadow: 0 8px 25px rgba(138, 35, 135, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  min-height: 170px;
+}
+
+.semana-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 15px 35px rgba(255, 117, 140, 0.4);
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.semana-icon {
+  font-size: 3.2rem;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.semana-card:hover .semana-icon {
+  transform: scale(1.15);
+}
+
+.semana-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Botón volver */
+.back-button {
+  background: linear-gradient(135deg, #ff85a2, #e056fd);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 30px;
+  box-shadow: 0 6px 20px rgba(224, 86, 253, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(224, 86, 253, 0.6);
+  background: linear-gradient(135deg, #ff758c, #d236ee);
+}
+
+/* Nombre del usuario arriba a la derecha */
+.user-name {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ff4757;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header img {
+    width: 90px;
+  }
+
+  .presentacion-grid {
+    gap: 25px;
+  }
+  
+  .presentacion-card {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .presentacion-icon {
+    font-size: 3.2rem;
+  }
+  
+  .presentacion-title {
+    font-size: 1.1rem;
+  }
+  
+  header h1 {
+    font-size: 2.2rem;
+  }
+  
+  header p {
+    font-size: 1rem;
+  }
+  
+  .semanas-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 18px;
+  }
+  
+  .semana-card {
+    padding: 18px 12px;
+    min-height: 140px;
+  }
+  
+  .semana-icon {
+    font-size: 2.5rem;
+  }
+  
+  .semana-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 20px 15px;
+  }
+  
+  .presentacion-grid {
+    gap: 20px;
+  }
+  
+  .presentacion-card {
+    width: 125px;
+    height: 125px;
+    border-radius: 20px;
+  }
+  
+  .presentacion-icon {
+    font-size: 2.5rem;
+  }
+  
+  .presentacion-title {
+    font-size: 0.95rem;
+  }
+  
+  .semanas-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .semana-card {
+    min-height: 120px;
+    padding: 15px 10px;
+  }
+  
+  .semana-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+  
+  .semana-title {
+    font-size: 0.95rem;
+  }
+}
