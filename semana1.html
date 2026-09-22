@@ -7,9 +7,6 @@
   <link rel="stylesheet" href="body.css" />
 
   <style>
-    /* ================================
-       🎨 ESTILOS GENERALES & PALETA
-       ================================ */
     body {
       font-family: 'Poppins', "Segoe UI", sans-serif;
       margin: 0;
@@ -22,7 +19,6 @@
       align-items: center;
     }
 
-    /* Indicador del rol de usuario */
     .user-name {
       position: absolute;
       top: 20px;
@@ -36,10 +32,9 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    /* Contenedor principal estilo cristal */
     .semana-container {
-      max-width: 850px;
-      width: 90%;
+      max-width: 1100px;
+      width: 95%;
       margin: 80px auto 40px;
       background: rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(15px);
@@ -47,12 +42,6 @@
       border-radius: 30px;
       border: 1px solid rgba(255, 255, 255, 0.35);
       box-shadow: 0 15px 35px rgba(138, 35, 135, 0.3);
-      animation: fadeIn 0.7s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .semana-header h1 {
@@ -68,7 +57,6 @@
       font-size: 1rem;
     }
 
-    /* Botón de retorno */
     .back-button {
       text-decoration: none;
       color: #fff;
@@ -85,96 +73,109 @@
       transform: translateX(-3px);
     }
 
-    /* Botón directo a GitHub */
-    .github-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 22px;
-      background: #24292e;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
-    .github-link:hover {
-      background: #4078c0;
-      transform: translateY(-2px);
-    }
-
-    /* ================================
-       🗂️ LISTA DE ARCHIVOS Y TARJETAS
-       ================================ */
-    .work-list {
-      border-top: 1px solid rgba(255, 255, 255, 0.3);
-      padding-top: 25px;
-      margin-top: 30px;
-    }
-
-    .work-list h2 {
-      font-size: 1.4rem;
-      margin-bottom: 20px;
-    }
-
-    .file-card {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.2);
+    /* Estilos para el acordeón de actividades */
+    details {
+      background: rgba(255, 255, 255, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 18px;
-      padding: 16px 20px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      padding: 20px;
       backdrop-filter: blur(5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      gap: 15px;
     }
 
-    .file-icon {
-      font-size: 2rem;
-    }
-
-    .file-info { 
-      flex: 1; 
-      overflow: hidden;
-    }
-
-    .file-name {
+    summary {
+      font-size: 1.3rem;
       font-weight: 600;
-      font-size: 1rem;
+      cursor: pointer;
       color: #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      outline: none;
     }
 
-    .file-size {
-      font-size: 0.85rem;
-      color: #ffe6ee;
-      margin-top: 2px;
+    /* Contenedor en cuadrícula para las tarjetas con previsualización */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
     }
+
+    /* Tarjeta estilo la imagen de referencia */
+    .preview-card {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    .preview-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Ventanita de previsualización (Iframe o Imagen integrada) */
+    .preview-window {
+      width: 100%;
+      height: 180px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.4);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-window iframe, 
+    .preview-window img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+    }
+
+    .file-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #fff;
+      min-height: 40px;
+    }
+
+    /* Botones inferiores */
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+
+    .view-btn {
+      background: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .view-btn:hover { background: rgba(255, 255, 255, 0.5); }
 
     .download-btn {
       background: linear-gradient(135deg, #ff85a2, #e056fd);
       color: #fff;
-      text-decoration: none;
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(224, 86, 253, 0.3);
-      transition: all 0.3s ease;
     }
-    .download-btn:hover {
-      background: linear-gradient(135deg, #ff758c, #d236ee);
-      transform: translateY(-2px);
-    }
-
-    #loadingStatus {
-      font-style: italic;
-      color: #ffe6ee;
-    }
+    .download-btn:hover { background: linear-gradient(135deg, #ff758c, #d236ee); }
   </style>
 </head>
 
@@ -184,89 +185,140 @@
   <div class="semana-container">
     <div class="semana-header">
       <a href="tareas.html" class="back-button">← Volver a Tareas</a>
-
-      <h1>🌸 Semana 1 - Arquitectura De Software</h1>
-      <p>Archivos y tareas alojados directamente en el repositorio de GitHub</p>
-
-      <a href="https://github.com/jenniferivera001-cyber/base-de-datos-2/tree/main/tareas%20semanales/tarea_sem1"
-         target="_blank"
-         class="github-link">
-        🌐 Ver carpeta en GitHub
-      </a>
+      <h1>🌸 Semana 1 - Previsualización de Trabajos</h1>
+      <p>Visualiza tus 9 actividades directamente en miniatura</p>
     </div>
 
-    <div class="work-list">
-      <h2>📂 Archivos de la Semana</h2>
-      <p id="loadingStatus">⏳ Cargando archivos desde GitHub...</p>
-      <div id="fileCards"></div>
-    </div>
+    <!-- ACTIVIDAD 1 -->
+    <details open>
+      <summary>📂 Actividad 1 - Arquitecturas</summary>
+      <div class="cards-grid">
+        
+        <!-- Trabajo 1 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT1 - 1 Arquitectura Centralizada.jpeg" alt="Act 1">
+          </div>
+          <div class="file-title">ACT1 - 1 Arquitectura Centralizada.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT1 - 1 Arquitectura Centralizada.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT1 - 1 Arquitectura Centralizada.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+        <!-- Trabajo 2 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT 1 - 2 Arquitectura Cliente - Servidor.jpeg" alt="Act 2">
+          </div>
+          <div class="file-title">ACT 1 - 2 Arquitectura Cliente - Servidor.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT 1 - 2 Arquitectura Cliente - Servidor.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT 1 - 2 Arquitectura Cliente - Servidor.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+        <!-- Trabajo 3 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT 1 - 3 Arquitectura distribuida.jpeg" alt="Act 3">
+          </div>
+          <div class="file-title">ACT 1 - 3 Arquitectura distribuida.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT 1 - 3 Arquitectura distribuida.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT 1 - 3 Arquitectura distribuida.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+        <!-- Trabajo 4 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT 1 - 4 Arquitectura en la nube y multitenencia.jpeg" alt="Act 4">
+          </div>
+          <div class="file-title">ACT 1 - 4 Arquitectura en la nube y multitenencia.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT 1 - 4 Arquitectura en la nube y multitenencia.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT 1 - 4 Arquitectura en la nube y multitenencia.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ACTIVIDAD 2 -->
+    <details>
+      <summary>📂 Actividad 2 - Características y DBMS</summary>
+      <div class="cards-grid">
+        
+        <!-- Trabajo 5 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT II 1_Caracteristicas_de_la_base_de_datos.jpeg" alt="Act II 1">
+          </div>
+          <div class="file-title">ACT II 1_Caracteristicas_de_la_base_de_datos.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT II 1_Caracteristicas_de_la_base_de_datos.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT II 1_Caracteristicas_de_la_base_de_datos.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+        <!-- Trabajo 6 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT II 2_Caracteristicas_de_los_DBMS.jpeg" alt="Act II 2">
+          </div>
+          <div class="file-title">ACT II 2_Caracteristicas_de_los_DBMS.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT II 2_Caracteristicas_de_los_DBMS.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT II 2_Caracteristicas_de_los_DBMS.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+        <!-- Trabajo 7 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT II 3_Desarrollo_tecnologico_y_mercado.jpeg" alt="Act II 3">
+          </div>
+          <div class="file-title">ACT II 3_Desarrollo_tecnologico_y_mercado.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT II 3_Desarrollo_tecnologico_y_mercado.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT II 3_Desarrollo_tecnologico_y_mercado.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+        <!-- Trabajo 8 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT II 4_Arquitecturas_de_los_DBMS.jpeg" alt="Act II 4">
+          </div>
+          <div class="file-title">ACT II 4_Arquitecturas_de_los_DBMS.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT II 4_Arquitecturas_de_los_DBMS.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT II 4_Arquitecturas_de_los_DBMS.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+        <!-- Trabajo 9 -->
+        <div class="preview-card">
+          <div class="preview-window">
+            <img src="tareas semanales/tarea_sem1/ACT II 5_Impactos_organizacionales.jpeg" alt="Act II 5">
+          </div>
+          <div class="file-title">ACT II 5_Impactos_organizacionales.jpeg</div>
+          <div class="card-actions">
+            <a href="tareas semanales/tarea_sem1/ACT II 5_Impactos_organizacionales.jpeg" target="_blank" class="action-btn view-btn">Ver</a>
+            <a href="tareas semanales/tarea_sem1/ACT II 5_Impactos_organizacionales.jpeg" download class="action-btn download-btn">Descargar</a>
+          </div>
+        </div>
+
+      </div>
+    </details>
+
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Manejo de rol
       const esAdmin = localStorage.getItem("esAdmin") === "true" || localStorage.getItem("isAdmin") === "true";
       document.getElementById("userName").textContent = esAdmin ? "Administrador" : "Invitado";
-
-      // Configuración del nuevo repositorio GitHub
-      const repoOwner = "jenniferivera001-cyber";
-      const repoName = "base-de-datos-2";
-      const folderPath = "tareas semanales/tarea_sem1";
-
-      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${encodeURIComponent(folderPath)}`;
-
-      // Cargar los archivos desde GitHub
-      fetch(apiUrl)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("No se pudo obtener el contenido o la carpeta está vacía.");
-          }
-          return response.json();
-        })
-        .then(data => {
-          const loadingStatus = document.getElementById("loadingStatus");
-          const container = document.getElementById("fileCards");
-          loadingStatus.style.display = "none";
-
-          // Filtrar solo archivos
-          const archivos = data.filter(item => item.type === "file");
-
-          if (archivos.length === 0) {
-            container.innerHTML = "<p>No hay archivos disponibles en esta carpeta.</p>";
-            return;
-          }
-
-          archivos.forEach(archivo => {
-            const card = document.createElement("div");
-            card.className = "file-card";
-
-            // Determinar ícono según la extensión
-            const ext = archivo.name.split('.').pop().toLowerCase();
-            let icono = "📄";
-            if (["pdf"].includes(ext)) icono = "📕";
-            if (["jpg", "jpeg", "png", "gif"].includes(ext)) icono = "🖼️";
-            if (["doc", "docx"].includes(ext)) icono = "📘";
-            if (["ppt", "pptx"].includes(ext)) icono = "📙";
-            if (["zip", "rar"].includes(ext)) icono = "📦";
-
-            // Formatear tamaño del archivo
-            const sizeKB = (archivo.size / 1024).toFixed(1) + " KB";
-
-            card.innerHTML = `
-              <div class="file-icon">${icono}</div>
-              <div class="file-info">
-                <div class="file-name" title="${archivo.name}">${archivo.name}</div>
-                <div class="file-size">${sizeKB}</div>
-              </div>
-              <a href="${archivo.download_url}" target="_blank" class="download-btn" download>⬇️ Descargar</a>
-            `;
-
-            container.appendChild(card);
-          });
-        })
-        .catch(error => {
-          document.getElementById("loadingStatus").textContent = "⚠️ " + error.message;
-        });
     });
   </script>
 </body>

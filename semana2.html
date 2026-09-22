@@ -8,8 +8,8 @@
 
   <style>
     /* ================================
-       🎨 ESTILOS GENERALES
-       ================================ */
+        🎨 ESTILOS GENERALES
+        ================================ */
     body {
       font-family: 'Poppins', "Segoe UI", sans-serif;
       margin: 0;
@@ -38,8 +38,8 @@
 
     /* Contenedor principal estilo cristal */
     .semana-container {
-      max-width: 850px;
-      width: 90%;
+      max-width: 1100px;
+      width: 95%;
       margin: 80px auto 40px;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(15px);
@@ -98,51 +98,81 @@
       font-weight: 600;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
+      margin-bottom: 25px;
     }
     .github-link:hover {
       background: #0366d6;
       transform: translateY(-2px);
     }
 
-    /* ================================
-       🗂️ LISTA DE ARCHIVOS Y TARJETAS
-       ================================ */
-    .work-list {
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      padding-top: 25px;
-      margin-top: 30px;
-    }
-
-    .work-list h2 {
-      font-size: 1.4rem;
+    /* Estilos para los Acordeones de Actividades */
+    details {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 18px;
       margin-bottom: 20px;
+      padding: 15px 20px;
+      backdrop-filter: blur(5px);
     }
 
-    .file-card {
+    summary {
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #fff;
+      outline: none;
+    }
+
+    /* Cuadrícula de tarjetas dentro de cada actividad */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .preview-card {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    .preview-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .preview-window {
+      width: 100%;
+      height: 160px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.4);
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 18px;
-      padding: 16px 20px;
-      margin-bottom: 15px;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      gap: 15px;
+      justify-content: center;
     }
 
-    .file-icon {
-      font-size: 2rem;
+    .preview-window iframe, 
+    .preview-window img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+      pointer-events: none;
     }
 
-    .file-info { 
-      flex: 1; 
-      overflow: hidden;
-    }
-
-    .file-name {
+    .file-title {
+      font-size: 0.9rem;
       font-weight: 600;
-      font-size: 1rem;
+      margin-bottom: 4px;
       color: #fff;
       white-space: nowrap;
       overflow: hidden;
@@ -150,30 +180,131 @@
     }
 
     .file-size {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       color: #e0e0e0;
-      margin-top: 2px;
+      margin-bottom: 12px;
     }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .view-btn {
+      background: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .view-btn:hover { background: rgba(255, 255, 255, 0.5); }
 
     .download-btn {
       background: linear-gradient(135deg, #8e44ad, #3498db);
       color: #fff;
-      text-decoration: none;
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-      transition: all 0.3s ease;
     }
-    .download-btn:hover {
-      background: linear-gradient(135deg, #71368a, #2980b9);
-      transform: translateY(-2px);
-    }
+    .download-btn:hover { background: linear-gradient(135deg, #71368a, #2980b9); }
 
     #loadingStatus {
       font-style: italic;
       color: #e0e0e0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ================================
+        🔍 VENTANA MODAL DE PREVISUALIZACIÓN
+        ================================ */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeInModal 0.3s ease;
+    }
+
+    @keyframes fadeInModal {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      position: relative;
+      width: 85%;
+      max-width: 900px;
+      height: 80vh;
+      background: #1e272e;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .modal-header {
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .close-modal {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .close-modal:hover { background: #c0392b; }
+
+    .modal-body {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+    }
+
+    .modal-body iframe, 
+    .modal-body img {
+      width: 100%;
+      height: 100%;
+      border: none;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -186,21 +317,33 @@
     <div class="semana-header">
       <a href="tareas.html" class="back-button">← Volver a Tareas</a>
 
-      <h1>🎨 Semana 2 </h1>
-      <p>Archivos y tareas alojados directamente en el repositorio de GitHub</p>
+      <h1>🎨 Semana 2</h1>
+      <p>Organizado en sus 3 actividades con previsualización flotante y descarga directa real</p>
 
       <a href="https://github.com/jenniferivera001-cyber/base-de-datos-2/tree/main/tareas%20semanales/tarea_sem2"
-         target="_blank"
-         class="github-link">
+          target="_blank"
+          class="github-link">
         🌐 Ver carpeta en GitHub
       </a>
     </div>
 
-    <!-- Lista de archivos procesados desde la API de GitHub -->
-    <div class="work-list">
-      <h2>📂 Archivos de la Semana</h2>
-      <p id="loadingStatus">⏳ Cargando archivos desde GitHub...</p>
-      <div id="fileCards"></div>
+    <!-- Estado de carga -->
+    <div id="loadingStatus">⏳ Cargando archivos de la Semana 2...</div>
+
+    <!-- Contenedor dinámico de las 3 Actividades -->
+    <div id="activitiesContainer"></div>
+  </div>
+
+  <!-- Modal flotante para Ver previsualización ampliada -->
+  <div class="modal-overlay" id="previewModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="modalFileName">Vista Previa</span>
+        <button class="close-modal" id="closeModalBtn">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBodyContainer">
+        <!-- Contenido dinámico del modal -->
+      </div>
     </div>
   </div>
 
@@ -210,14 +353,64 @@
       const esAdmin = localStorage.getItem("esAdmin") === "true" || localStorage.getItem("isAdmin") === "true";
       document.getElementById("userName").textContent = esAdmin ? "Administrador" : "Invitado";
 
-      // Configuración del repositorio GitHub para la Semana 2
+      // Elementos del modal
+      const modal = document.getElementById("previewModal");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const modalBody = document.getElementById("modalBodyContainer");
+      const modalFileName = document.getElementById("modalFileName");
+
+      function abrirModal(url, nombre, ext) {
+        modalFileName.textContent = nombre;
+        if (ext === "pdf") {
+          modalBody.innerHTML = `<iframe src="${url}#toolbar=1&view=FitH" title="${nombre}"></iframe>`;
+        } else if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext)) {
+          modalBody.innerHTML = `<img src="${url}" alt="${nombre}">`;
+        } else {
+          modalBody.innerHTML = `<div style="color: #000; padding: 20px; text-align: center;">Este archivo no se puede previsualizar directamente, pero puedes descargarlo.</div>`;
+        }
+        modal.style.display = "flex";
+      }
+
+      function cerrarModal() {
+        modal.style.display = "none";
+        modalBody.innerHTML = "";
+      }
+
+      closeModalBtn.addEventListener("click", cerrarModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) cerrarModal();
+      });
+
+      // Función para forzar descarga directa descargando el binario por fetch
+      async function descargarArchivo(url, nombreArchivo) {
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
+          const blobUrl = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.download = nombreArchivo;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(blobUrl);
+        } catch (e) {
+          // Fallback por si acaso falla el fetch
+          const link = document.createElement('a');
+          link.href = url;
+          link.target = "_blank";
+          link.download = nombreArchivo;
+          link.click();
+        }
+      }
+
+      // Configuración de GitHub para la Semana 2
       const repoOwner = "jenniferivera001-cyber";
       const repoName = "base-de-datos-2";
       const folderPath = "tareas semanales/tarea_sem2";
 
       const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${encodeURIComponent(folderPath)}`;
 
-      // Cargar los archivos desde GitHub
       fetch(apiUrl)
         .then(response => {
           if (!response.ok) {
@@ -226,11 +419,9 @@
           return response.json();
         })
         .then(data => {
-          const loadingStatus = document.getElementById("loadingStatus");
-          const container = document.getElementById("fileCards");
-          loadingStatus.style.display = "none";
+          document.getElementById("loadingStatus").style.display = "none";
+          const container = document.getElementById("activitiesContainer");
 
-          // Filtrar solo archivos
           const archivos = data.filter(item => item.type === "file");
 
           if (archivos.length === 0) {
@@ -238,32 +429,96 @@
             return;
           }
 
+          const act1Files = [];
+          const act2Files = [];
+          const act3Files = [];
+          const otrosFiles = [];
+
           archivos.forEach(archivo => {
-            const card = document.createElement("div");
-            card.className = "file-card";
+            const nameUp = archivo.name.toUpperCase();
+            if (nameUp.includes("ACT 1") || nameUp.includes("ACT1") || nameUp.includes("ACTIVIDAD 1")) {
+              act1Files.push(archivo);
+            } else if (nameUp.includes("ACT 2") || nameUp.includes("ACT2") || nameUp.includes("ACTIVIDAD 2")) {
+              act2Files.push(archivo);
+            } else if (nameUp.includes("ACT 3") || nameUp.includes("ACT3") || nameUp.includes("ACTIVIDAD 3")) {
+              act3Files.push(archivo);
+            } else {
+              otrosFiles.push(archivo);
+            }
+          });
 
-            // Determinar ícono según la extensión
-            const ext = archivo.name.split('.').pop().toLowerCase();
-            let icono = "📄";
-            if (["pdf"].includes(ext)) icono = "📕";
-            if (["jpg", "jpeg", "png", "gif"].includes(ext)) icono = "🖼️";
-            if (["doc", "docx"].includes(ext)) icono = "📘";
-            if (["ppt", "pptx"].includes(ext)) icono = "📙";
-            if (["zip", "rar"].includes(ext)) icono = "📦";
+          if (otrosFiles.length > 0) {
+            otrosFiles.forEach((f, idx) => {
+              if (idx % 3 === 0) act1Files.push(f);
+              else if (idx % 3 === 1) act2Files.push(f);
+              else act3Files.push(f);
+            });
+          }
 
-            // Formatear tamaño del archivo
-            const sizeKB = (archivo.size / 1024).toFixed(1) + " KB";
+          const actividades = [
+            { title: "📂 Actividad 1", files: act1Files, open: true },
+            { title: "📂 Actividad 2", files: act2Files, open: false },
+            { title: "📂 Actividad 3", files: act3Files, open: false }
+          ];
 
-            card.innerHTML = `
-              <div class="file-icon">${icono}</div>
-              <div class="file-info">
-                <div class="file-name" title="${archivo.name}">${archivo.name}</div>
-                <div class="file-size">${sizeKB}</div>
-              </div>
-              <a href="${archivo.download_url}" target="_blank" class="download-btn" download>⬇️ Descargar</a>
-            `;
+          actividades.forEach(act => {
+            if (act.files.length === 0) return;
 
-            container.appendChild(card);
+            const details = document.createElement("details");
+            if (act.open) details.setAttribute("open", "");
+
+            const summary = document.createElement("summary");
+            summary.textContent = `${act.title} (${act.files.length} archivos)`;
+            details.appendChild(summary);
+
+            const grid = document.createElement("div");
+            grid.className = "cards-grid";
+
+            act.files.forEach(archivo => {
+              const card = document.createElement("div");
+              card.className = "preview-card";
+
+              const ext = archivo.name.split('.').pop().toLowerCase();
+              const sizeKB = (archivo.size / 1024).toFixed(1) + " KB";
+
+              let previewContent = "";
+              if (ext === "pdf") {
+                previewContent = `<iframe src="${archivo.download_url}#toolbar=0&view=FitH" title="${archivo.name}"></iframe>`;
+              } else if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext)) {
+                previewContent = `<img src="${archivo.download_url}" alt="${archivo.name}">`;
+              } else {
+                previewContent = `<div style="font-size: 2.5rem; color:#333;">📄</div>`;
+              }
+
+              card.innerHTML = `
+                <div class="preview-window">
+                  ${previewContent}
+                </div>
+                <div>
+                  <div class="file-title" title="${archivo.name}">${archivo.name}</div>
+                  <div class="file-size">${sizeKB}</div>
+                </div>
+                <div class="card-actions">
+                  <button class="action-btn view-btn">Ver</button>
+                  <button class="action-btn download-btn">Descargar</button>
+                </div>
+              `;
+
+              // Evento Ver (Abre el modal flotante)
+              card.querySelector(".view-btn").addEventListener("click", () => {
+                abrirModal(archivo.download_url, archivo.name, ext);
+              });
+
+              // Evento Descargar (Forzado mediante fetch blob para evitar que el navegador abra la imagen/pdf en otra pestaña)
+              card.querySelector(".download-btn").addEventListener("click", () => {
+                descargarArchivo(archivo.download_url, archivo.name);
+              });
+
+              grid.appendChild(card);
+            });
+
+            details.appendChild(grid);
+            container.appendChild(details);
           });
         })
         .catch(error => {
