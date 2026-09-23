@@ -431,29 +431,21 @@
           const act1Files = [];
           const act2Files = [];
           const act3Files = [];
-          const otrosFiles = [];
 
+          // Clasificación perfecta basada en tus nombres actuales
           archivos.forEach(archivo => {
             const nameUp = archivo.name.toUpperCase();
-            // Filtro flexible adaptado a tus nombres reales (ACT 1, ACT 2, ACT 3)
-            if (nameUp.includes("ACT 1") || nameUp.includes("ACT1") || nameUp.includes("ACTIVIDAD 1")) {
+            if (nameUp.includes("ACT 1") || nameUp.includes("ACT1")) {
               act1Files.push(archivo);
-            } else if (nameUp.includes("ACT 2") || nameUp.includes("ACT2") || nameUp.includes("ACTIVIDAD 2") || nameUp.includes("CAPITULO")) {
+            } else if (nameUp.includes("ACT 2") || nameUp.includes("ACT2")) {
               act2Files.push(archivo);
-            } else if (nameUp.includes("ACT 3") || nameUp.includes("ACT3") || nameUp.includes("ACTIVIDAD 3") || nameUp.includes("INF_")) {
+            } else if (nameUp.includes("ACT 3") || nameUp.includes("ACT3")) {
               act3Files.push(archivo);
             } else {
-              otrosFiles.push(archivo);
+              // Por si hay algún archivo extra sin etiqueta principal
+              act1Files.push(archivo);
             }
           });
-
-          if (otrosFiles.length > 0) {
-            otrosFiles.forEach((f, idx) => {
-              if (idx % 3 === 0) act1Files.push(f);
-              else if (idx % 3 === 1) act2Files.push(f);
-              else act3Files.push(f);
-            });
-          }
 
           const actividades = [
             { title: "📂 Actividad 1", files: act1Files, open: true },
@@ -504,12 +496,12 @@
                 </div>
               `;
 
-              // Evento Ver (Abre el modal flotante)
+              // Evento Ver (Abre el modal flotante sin descargar nada)
               card.querySelector(".view-btn").addEventListener("click", () => {
                 abrirModal(archivo.download_url, archivo.name, ext);
               });
 
-              // Evento Descargar (Forzado mediante fetch blob)
+              // Evento Descargar (SOLO se ejecuta cuando el usuario hace clic en el botón)
               card.querySelector(".download-btn").addEventListener("click", () => {
                 descargarArchivo(archivo.download_url, archivo.name);
               });
