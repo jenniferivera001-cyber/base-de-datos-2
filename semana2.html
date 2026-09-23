@@ -395,7 +395,6 @@
           document.body.removeChild(link);
           window.URL.revokeObjectURL(blobUrl);
         } catch (e) {
-          // Fallback por si acaso falla el fetch
           const link = document.createElement('a');
           link.href = url;
           link.target = "_blank";
@@ -436,11 +435,12 @@
 
           archivos.forEach(archivo => {
             const nameUp = archivo.name.toUpperCase();
+            // Filtro flexible adaptado a tus nombres reales (ACT 1, ACT 2, ACT 3)
             if (nameUp.includes("ACT 1") || nameUp.includes("ACT1") || nameUp.includes("ACTIVIDAD 1")) {
               act1Files.push(archivo);
-            } else if (nameUp.includes("ACT 2") || nameUp.includes("ACT2") || nameUp.includes("ACTIVIDAD 2")) {
+            } else if (nameUp.includes("ACT 2") || nameUp.includes("ACT2") || nameUp.includes("ACTIVIDAD 2") || nameUp.includes("CAPITULO")) {
               act2Files.push(archivo);
-            } else if (nameUp.includes("ACT 3") || nameUp.includes("ACT3") || nameUp.includes("ACTIVIDAD 3")) {
+            } else if (nameUp.includes("ACT 3") || nameUp.includes("ACT3") || nameUp.includes("ACTIVIDAD 3") || nameUp.includes("INF_")) {
               act3Files.push(archivo);
             } else {
               otrosFiles.push(archivo);
@@ -509,7 +509,7 @@
                 abrirModal(archivo.download_url, archivo.name, ext);
               });
 
-              // Evento Descargar (Forzado mediante fetch blob para evitar que el navegador abra la imagen/pdf en otra pestaña)
+              // Evento Descargar (Forzado mediante fetch blob)
               card.querySelector(".download-btn").addEventListener("click", () => {
                 descargarArchivo(archivo.download_url, archivo.name);
               });
